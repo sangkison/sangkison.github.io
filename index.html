@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>손상기 | 품질 경영 전문가</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        .hero-image-wrapper {
+            flex: 0 0 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%;
+            border: 5px solid var(--bg-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .info-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--secondary-color);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-color);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 45%;
+        }
+
+        .experience-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .experience-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border: 4px solid var(--bg-color);
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .experience-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .experience-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .experience-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .experience-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .company {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .experience-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .achievement-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-period {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .achievement-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .achievement-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background-color: var(--bg-light);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .philosophy-quote {
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .philosophy p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Personality Section */
+        .personality-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .personality-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .personality-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .personality-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .personality-card li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .personality-card li strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .contact-item a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .experience-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 3rem;
+            }
+
+            .experience-item::before {
+                left: 10px !important;
+                right: auto !important;
+            }
+
+            .personality-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">손상기</a>
+            <ul class="nav-menu">
+                <li><a href="#about">소개</a></li>
+                <li><a href="#skills">기술</a></li>
+                <li><a href="#experience">경력</a></li>
+                <li><a href="#achievements">실적</a></li>
+                <li><a href="#contact">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>손상기</h1>
+                    <p class="subtitle">품질 경영 전문가</p>
+                    <p>
+                        안녕하세요. 손상기입니다. 2002년 삼성전자 입사 이후 반도체, CS, 품질 인증 분야에서 
+                        20년 이상의 경력을 쌓아온 품질 경영 전문가입니다. 지속적인 학습과 혁신을 통해 
+                        고객 가치 향상에 기여하고 있습니다.
+                    </p>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="P.png" alt="손상기 프로필 사진" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">소개</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        저는 2002년 2월 입사하여 삼성전자 반도체사업부 DRAM개발실에서 10년간 
+                        DRAM 메모리 신제품 성능 TEST 및 불량분석 업무를 하였고, 2011년 전 사업부 
+                        CS총괄조직(Global CS센터) 해외CS주재원 양성인력으로 선발되어 2012년 해외 
+                        CS주재원으로 법인CS조직 리더로서 역할을 하였습니다.
+                    </p>
+                    <p>
+                        2017년 귀임 후 전사 CS총괄 품질팀에서 생활가전 신제품 HW 품질인증업무를 하였고, 
+                        2022년부터 현재까지 동일조직에서 생활가전 신제품 SW 품질인증업무를 수행하고 있습니다.
+                    </p>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>경력 기간</strong>
+                        2002년 ~ 현재 (20년 이상)
+                    </div>
+                    <div class="info-item">
+                        <strong>주요 경력</strong>
+                        반도체 / CS / 품질 인증
+                    </div>
+                    <div class="info-item">
+                        <strong>현재 직무</strong>
+                        생활가전 신제품 SW 품질인증
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">전문 보유 기술</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>품질 관리</h3>
+                    <p>
+                        품질관리기술사 자격증 보유<br>
+                        통계적 품질관리, 추정과 검정 분석, 신뢰성 분석 수행
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🏭</div>
+                    <h3>생산 관리</h3>
+                    <p>
+                        생산관리 경영지도사 자격증 보유<br>
+                        ISO 9001 품질경영시스템 자격증 보유
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>데이터 분석</h3>
+                    <p>
+                        빅데이터 분석기사 자격증 보유<br>
+                        SQL, Python 활용한 데이터 분석 및 Dashboard 구축
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔬</div>
+                    <h3>SW 테스팅</h3>
+                    <p>
+                        ISTQB_FL 국제 Software Testing 자격증 보유<br>
+                        AI 활용한 TestCase 제작 자동화 구축
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 class="section-title">경력 사항</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>DRAM 신제품 성능 TEST 및 불량분석</h3>
+                        <div class="company">삼성전자 반도체사업부 DRAM개발실</div>
+                        <div class="period">2002.02 - 2012.12</div>
+                        <ul>
+                            <li>DRAM 메모리 신제품 성능 TEST 및 불량분석 업무 수행 (10년)</li>
+                            <li>신제품 개발 단계별 품질 검증 프로세스 구축</li>
+                            <li>불량 원인 분석 및 개선 활동 주도</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>해외 CS주재원 / 법인CS조직 리더</h3>
+                        <div class="company">전 사업부 CS총괄조직 (Global CS센터)</div>
+                        <div class="period">2012.01 - 2017.12</div>
+                        <ul>
+                            <li>해외CS주재원 양성인력으로 선발되어 해외 CS주재원으로 활동</li>
+                            <li>법인CS조직 리더로서 모로코, 알제리, 튀니지, 리비아 CS조직 통합 운영</li>
+                            <li>모로코 전략도시 차별화 서비스 통한 SCSI 개선</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>생활가전 신제품 HW 품질인증</h3>
+                        <div class="company">전사 CS총괄 품질팀</div>
+                        <div class="period">2018.01 - 2022.05</div>
+                        <ul>
+                            <li>생활가전 신제품 Hardware 품질인증 업무</li>
+                            <li>선행개발단계 잠재 리스크 발굴, 생산 현장점검 및 진단</li>
+                            <li>청소기 신모델 품질개선 : 기존 22.12% → 신모델 8.38% (62% 개선)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <h3>생활가전 신제품 SW 품질인증</h3>
+                        <div class="company">전사 CS총괄 품질팀</div>
+                        <div class="period">2022.06 - 현재</div>
+                        <ul>
+                            <li>생활가전 신제품 Software 품질인증 업무 수행</li>
+                            <li>세탁기/건조기 신모델 SW품질인증</li>
+                            <li>로봇청소기/스틱청소기 고객경험품질 인증</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <h2 class="section-title">주요 실적</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h3>모로코 전략도시 차별화 서비스 통한 SCSI 개선</h3>
+                    <div class="achievement-period">2015.1 - 2017.12</div>
+                    <ul>
+                        <li>휴대폰 1시간내 수리완료 스마트 서비스 구축</li>
+                        <li>TV/가전제품 D+1일내 방문수리 서비스 구축</li>
+                        <li><span class="highlight">SCSI 지속개선</span> : '14년 99.5 → '15년 101.2 → '16년 105.2 → '17년 108.6</li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>북아프리카 매장내 복합점 구축 및 법인 매출 증대</h3>
+                    <div class="achievement-period">2015.1 - 2017.12</div>
+                    <ul>
+                        <li>매장내 복합점 구축 및 스마트 아카데미 교육 런칭</li>
+                        <li><span class="highlight">매장 방문객 1.8배 증가</span> (2.4천명/월 → 4.2천)</li>
+                        <li><span class="highlight">법인 매출 증대</span> : '14년 211.7M$ → '17년 236.7M$</li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>북부 아프리카 4개국 법인 통합 프로젝트</h3>
+                    <div class="achievement-period">2015.1 - 2015.12</div>
+                    <ul>
+                        <li>모로코, 알제리, 튀니지, 리비아 CS조직 통합 운영</li>
+                        <li><span class="highlight">콜센터 통합운영 통한 비용 28% 절감</span> (84K$)</li>
+                        <li><span class="highlight">고가자재 사용개선 통한 비용 50% 절감</span> (180K$)</li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>해외 서비스 반품 개선활동</h3>
+                    <div class="achievement-period">2016.1 - 2017.12</div>
+                    <ul>
+                        <li>해외 서비스(수리/자재/VOC)반품 개선활동</li>
+                        <li>북미/중남미/유럽 지역별 맞춤 개선 프로세스 적용</li>
+                        <li><span class="highlight">서비스 반품율/비용 35% 개선</span></li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>자재공급 프로세스 적용</h3>
+                    <div class="achievement-period">2018.1 - 2018.12</div>
+                    <ul>
+                        <li>자재공급 프로세스 (OFS) 적용통한 장기미결 감축</li>
+                        <li>주요 자재에 대한 수리점 자재전진배치 실시</li>
+                        <li><span class="highlight">해피콜 고객만족도 6.5점 향상</span> : '16년 86.7점 → '17년 93.2점</li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>생활가전 신제품 HW 품질인증</h3>
+                    <div class="achievement-period">2019.1 - 2022.5</div>
+                    <ul>
+                        <li>신모델 품질개선 및 품질인증</li>
+                        <li>생산 현장점검 및 진단</li>
+                        <li><span class="highlight">청소기 신모델 품질개선 62% 개선</span></li>
+                    </ul>
+                </div>
+                <div class="achievement-card">
+                    <h3>생활가전 신제품 SW 품질인증</h3>
+                    <div class="achievement-period">2022.6 - 현재</div>
+                    <ul>
+                        <li>세탁기/건조기/의류관리기 신모델 SW품질인증</li>
+                        <li>신제품 UX일관성 및 사용성 고객경험 품질인증</li>
+                        <li>AI제트 4세대 등 다수 모델 인증 완료</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy">
+            <div class="philosophy">
+                <div class="philosophy-quote">"기술은 사람을 위해 존재한다"</div>
+                <p>
+                    개발자로서 항상 사용자의 관점에서 생각하려 노력합니다. 아무리 기술적으로 뛰어난 코드라도 
+                    실제 사용자에게 도움이 되지 않는다면 의미가 없다고 생각합니다. 사용자가 더 편리하고 
+                    효율적으로 업무를 처리할 수 있도록 돕는 것이 개발자의 사명이라고 믿습니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Personality Section -->
+        <section id="personality">
+            <h2 class="section-title">성격의 장단점</h2>
+            <div class="personality-grid">
+                <div class="personality-card">
+                    <h3>장점</h3>
+                    <ul>
+                        <li>
+                            <strong>꾸준한 학습 의지</strong>
+                            새로운 기술 트렌드에 관심이 많아 개인 시간을 활용해 온라인 강의를 수강하고 사이드 프로젝트를 진행합니다.
+                        </li>
+                        <li>
+                            <strong>협업과 소통</strong>
+                            팀 프로젝트에서 다른 개발자, 디자이너, 기획자와 원활히 소통하며 공동의 목표를 달성하는 것을 중요하게 생각합니다.
+                        </li>
+                        <li>
+                            <strong>문제 해결 지향적</strong>
+                            복잡한 버그나 기술적 이슈에 직면했을 때 포기하지 않고 다양한 접근 방법을 시도하여 해결책을 찾습니다.
+                        </li>
+                    </ul>
+                </div>
+                <div class="personality-card">
+                    <h3>단점 및 개선</h3>
+                    <ul>
+                        <li>
+                            <strong>완벽주의 성향</strong>
+                            때로는 코드의 완성도에 지나치게 집착하여 일정에 영향을 줄 수 있습니다. 이를 개선하기 위해 우선순위를 명확히 하고 적정 수준의 완성도를 목표로 하는 연습을 하고 있습니다.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">연락처</h2>
+            <div class="contact-content">
+                <p>새로운 기회나 협업에 대해 이야기하고 싶으시다면 언제든지 연락 주세요.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>이메일:</strong> <a href="mailto:oriom0076@gmail.com">oriom0076@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>연락처:</strong> 010-3841-2758
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 손상기. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active navigation link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
